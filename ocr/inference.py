@@ -92,7 +92,7 @@ class InferenceOCR:
         Too small crops are not used further.
         """
         crops = dict()
-        for idx, pred in enumerate(np.array(prediction)):
+        for idx, pred in enumerate(prediction):
             x_1 = np.min(pred[:, 1])
             x_2 = np.max(pred[:, 1])
             y_1 = np.min(pred[:, 0])
