@@ -1,7 +1,12 @@
 # OCR Recognition
 
-![alt text](https://github.com/KonstantinDob/ocr/tree/master/pics/main_image.png?raw=true)
+![Main image](pics/main_image.png)
 
+OCR pipeline detects and recognizes text in images. OCR was written in 
+PyTorch and allows use ONNX inference and OpenVINO optimization. 
+Detailed info about the neural networks used can be found here:
+[recognition model](https://github.com/KonstantinDob/ocr_recognition), 
+[detection model](https://github.com/KonstantinDob/ocr_detection).
 
 ## Installation
 
@@ -27,6 +32,12 @@ From source:
 pip install -U git+https://github.com/KonstantinDob/ocr
 ```
 
+## Run Inference
+To run Inference you should prepare weights and configs. After 
+`python3 bin/inference.py --datapath=YOUR_PATH_TO_DATA`
+If you want to use ONNX inference or OpenVINO optimization you should
+use scripts from ocr/modules.
+
 ## Docker 
 
 To use docker with GPU you need *nvidia-docker == 2.9.0*.
@@ -42,9 +53,3 @@ Run in interactive mode:
 ```
 make run
 ```
-
-## Run
-
-To run Inference you should prepare weights and configs.
-If you want to use OpenVINO/ONNX optimization you should use scripts 
-from ocr/modules.
