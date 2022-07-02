@@ -1,12 +1,12 @@
 # OCR Recognition
 
-Train OCR recognition models in PyTorch.
+![alt text](https://github.com/KonstantinDob/ocr/tree/master/pics/main_image?raw=true
 
 
 ## Installation
 
 Requirements:
-* numpy==1.22.1
+* numpy==1.19.5
 * opencv-python==4.5.5.62
 * PyYAML==6.0
 * torch==1.10.2
