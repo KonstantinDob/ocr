@@ -1,6 +1,6 @@
 # OCR Recognition
 
-![alt text](https://github.com/KonstantinDob/ocr/tree/master/pics/main_image.png?raw=true)
+![Main image](pics/main_image.png)
 
 
 ## Installation
