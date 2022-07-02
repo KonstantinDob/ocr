@@ -1,4 +1,4 @@
-# OCR Recognition
+# OCR
 
 ![Main image](pics/main_image.png)
 
