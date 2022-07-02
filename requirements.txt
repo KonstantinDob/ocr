@@ -1,0 +1,10 @@
+numpy==1.19.5
+opencv-python==4.5.5.62
+PyYAML==6.0
+torch==1.10.2
+onnx==1.12.0
+onnxruntime==1.9.0
+openvino==2022.1.0
+ocr_detection @ git+https://github.com/KonstantinDob/ocr_detection
+ocr_recognition @ git+https://github.com/KonstantinDob/ocr_recognition
+

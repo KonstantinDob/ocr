@@ -1,0 +1,3 @@
+# [cpu, cuda, onnx, openvino]
+speed_up: openvino
+min_crop_size: [15, 20]

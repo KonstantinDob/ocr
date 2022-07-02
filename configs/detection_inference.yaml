@@ -1,0 +1,10 @@
+mode: inference
+device: cuda
+pretrained: data/ocr_detection/models/model.pth
+mean: [114.6, 119.5, 128.6]
+std: [77.8, 76.0, 78.2]
+image_size: [800, 800]
+mask_threshold: 0.5
+min_area: 1000
+model: {base: Unet, encoder_name: resnet34,
+        encoder_weights: null, in_channels: 3, classes: 2}
