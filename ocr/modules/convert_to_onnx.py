@@ -56,14 +56,14 @@ def convert_to_onnx(model: torch.nn.Module, input_shape: List[int]):
 
 def main():
     # ['ocr_detection', 'ocr_recognition']
-    model_to_convert = 'ocr_recognition'
+    model_to_convert = 'detection'
 
     config = load_config(model_type=model_to_convert)
     config['device'] = 'cpu'
 
-    if model_to_convert == 'ocr_recognition':
+    if model_to_convert == 'recognition':
         model = InferenceOCRRec(config=config).model.model
-    elif model_to_convert == 'ocr_detection':
+    elif model_to_convert == 'detection':
         model = InferenceOCRDet(config=config).model.model
     else:
         AttributeError('Incorrect model name!')

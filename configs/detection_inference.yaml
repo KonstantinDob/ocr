@@ -1,6 +1,6 @@
 mode: inference
 device: cuda
-pretrained: data/ocr_detection/models/model.pth
+pretrained: data/ocr_detection/model.pth
 mean: [114.6, 119.5, 128.6]
 std: [77.8, 76.0, 78.2]
 image_size: [800, 800]
