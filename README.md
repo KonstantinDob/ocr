@@ -33,7 +33,7 @@ pip install -U git+https://github.com/KonstantinDob/ocr
 ```
 
 ## Run Inference
-To run Inference you should prepare weights and configs. After 
+To run Inference you should prepare weights and configs. After
 `python3 bin/inference.py --datapath=YOUR_PATH_TO_DATA`
 If you want to use ONNX inference or OpenVINO optimization you should
 use scripts from ocr/modules.

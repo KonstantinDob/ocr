@@ -140,5 +140,6 @@ class InferenceOCR:
         text = {key: self.rec_model.predict(val) for key, val
                 in crops.items()}
 
+
         output = self._visualize_prediction(image, det_prediction, text)
         return output

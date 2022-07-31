@@ -13,7 +13,7 @@ def load_config(model_type: str) -> Dict[str, Any]:
     Returns:
         Dict[str, Any]: Config with model/data parameters.
     """
-    config_path = join('./data', model_type)
-    with open(join(config_path, 'inference.yaml'), 'r') as file:
+    with open(join('./configs', f'{model_type}_inference.yaml'),
+              'r') as file:
         data_config = yaml.safe_load(file)
     return data_config
