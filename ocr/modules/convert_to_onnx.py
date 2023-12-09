@@ -9,37 +9,42 @@ from ocr_recognition.inference import InferenceOCRRec
 from ocr_detection.inference import InferenceOCRDet
 
 
-def to_numpy(tensor):
-    """Convert tensor to numpy."""
-    return tensor.detach().cpu().numpy() if \
-        tensor.requires_grad else tensor.cpu().numpy()
+def to_numpy(tensor: torch.Tensor) -> np.ndarray:
+    """Convert tensor to numpy.
+
+    Args:
+        tensor (torch.Tensor): Tensor convert to numpy.
+
+    Returns:
+        np.ndarray: Numpy array converted from tensor.
+    """
+    return tensor.detach().cpu().numpy() if tensor.requires_grad else tensor.cpu().numpy()
 
 
-def convert_to_onnx(model: torch.nn.Module, input_shape: List[int]):
+def convert_to_onnx(model: torch.nn.Module, input_shape: List[int]) -> None:
     """Convert models to ONNX.
 
     Tested on Gyomei model type. Be careful, recognition models have few
-    modules that may cause errors due conversion
-    (f.e. Sequential modul).
+    modules that may cause errors due conversion (f.e. Sequential modul).
 
     Args:
         model (torch.nn.Module): Pytorch-like model with loaded weights.
-        input_shape (List[int]): Input data shape.
+        input_shape (list of int): Input data shape.
     """
     # Convert to ONNX
     with torch.no_grad():
         torch_inp = torch.randn(input_shape, requires_grad=False)
         torch_out = model(torch_inp)
-        onnx_model = 'model.onnx'
+        onnx_model = "model.onnx"
 
         torch.onnx.export(model,
                           torch_inp,
                           onnx_model,
                           opset_version=11,
-                          input_names=['input'],
-                          output_names=['output'],
-                          dynamic_axes={'input': {0: 'batch_size'},
-                                        'output': {0: 'batch_size'}})
+                          input_names=["input"],
+                          output_names=["output"],
+                          dynamic_axes={"input": {0: "batch_size"},
+                                        "output": {0: "batch_size"}})
 
     # Check conversion
     ort_session = onnxruntime.InferenceSession(onnx_model)
@@ -47,29 +52,27 @@ def convert_to_onnx(model: torch.nn.Module, input_shape: List[int]):
     ort_inputs = {ort_session.get_inputs()[0].name: to_numpy(torch_inp)}
     ort_outs = ort_session.run(None, ort_inputs)
 
-    np.testing.assert_allclose(to_numpy(torch_out), ort_outs[0],
-                               rtol=1e-03, atol=1e-05)
+    np.testing.assert_allclose(to_numpy(torch_out), ort_outs[0], rtol=1e-03, atol=1e-05)
 
-    print("Exported model has been tested with ONNXRuntime, "
-          "and the result looks good!")
+    print("Exported model has been tested with ONNXRuntime, and the result looks good!")
 
 
 def main():
-    # ['ocr_detection', 'ocr_recognition']
-    model_to_convert = 'detection'
+    # ["ocr_detection", "ocr_recognition"]
+    model_to_convert = "detection"
 
     config = load_config(model_type=model_to_convert)
-    config['device'] = 'cpu'
+    config["device"] = "cpu"
 
-    if model_to_convert == 'recognition':
+    if model_to_convert == "recognition":
         model = InferenceOCRRec(config=config).model.model
-    elif model_to_convert == 'detection':
+    elif model_to_convert == "detection":
         model = InferenceOCRDet(config=config).model.model
     else:
-        AttributeError('Incorrect model name!')
+        AttributeError("Incorrect model name!")
 
     convert_to_onnx(model=model,
-                    input_shape=[1, 3] + config['image_size'][::-1])
+                    input_shape=[1, 3] + config["image_size"][::-1])
 
 
 if __name__ == "__main__":

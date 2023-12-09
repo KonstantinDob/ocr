@@ -1,4 +1,2 @@
 class BadImageException(RuntimeError):
-    """Bad image exception.
-    """
-    pass
+    """Bad image exception."""
