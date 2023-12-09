@@ -7,13 +7,12 @@ def load_config(model_type: str) -> Dict[str, Any]:
     """Load inference config.
 
     Args:
-        model_type (str): What model configs should be loaded.
-            Related to folder name in "./data" folder.
+        model_type (str): What model configs should be loaded. Related to folder name in
+            "./data" folder.
 
     Returns:
-        Dict[str, Any]: Config with model/data parameters.
+        dict of str: Any: Config with model/data parameters.
     """
-    with open(join('./configs', f'{model_type}_inference.yaml'),
-              'r') as file:
+    with open(join("./configs", f"{model_type}_inference.yaml"), "r") as file:
         data_config = yaml.safe_load(file)
     return data_config
