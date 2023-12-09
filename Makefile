@@ -28,7 +28,6 @@ test-cov:
 		--name=$(NAME) \
 		$(NAME) \
 		pytest \
-			-k "notest" \
 			-p no:logging \
 			--cache-clear \
 			--cov ocr/builder \

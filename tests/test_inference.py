@@ -8,7 +8,7 @@ from ocr.inference import InferenceOCR
 from ocr.modules.common import BadImageException
 
 # TODO: Implement a weight loading module for testing inference.
-# Once implemented, consider removing the -k option from the Makefile tests-cov.
+# Once implemented, consider removing the pytest skip from all tests.
 
 
 class TestInference:
@@ -23,6 +23,7 @@ class TestInference:
         Args:
             model_type (str): What model speed up type will be tested.
         """
+        pytest.skip("No model weights")
         yaml = ruamel.yaml.YAML()
         with open("configs/inference.yaml", "r") as file:
             config = yaml.load(file)
@@ -45,6 +46,7 @@ class TestInference:
     )
     def test_shape(self, data_shape: List[int], created: bool):
         """Test inference for input data shape"""
+        pytest.skip("No model weights")
         inference = InferenceOCR()
         data = np.zeros(data_shape, dtype=np.uint8)
         try:
@@ -61,6 +63,7 @@ class TestInference:
     )
     def test_data_type(self, data: Any, created: bool):
         """Test inference for input data type"""
+        pytest.skip("No model weights")
         inference = InferenceOCR()
         try:
             inference.predict(data)
