@@ -11,13 +11,13 @@ Detailed info about the neural networks used can be found here:
 ## Installation
 
 Requirements:
-* numpy==1.19.5
+* numpy==1.26.2
 * opencv-python==4.5.5.62
 * PyYAML==6.0
-* torch==1.10.2
+* torch==1.13.0
 * onnx==1.12.0
 * onnxruntime==1.11.1
-* openvino==2022.1.0
+* openvino==2023.1.0
 * git+https://github.com/KonstantinDob/ocr_detection
 * git+https://github.com/KonstantinDob/ocr_recognition
 
